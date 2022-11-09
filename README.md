@@ -77,10 +77,12 @@ void _decrementCounter() {
 ```
 
 4. Menambahkan logic untuk menenetukan teks yang di display diatas counter
-`Text(_isOdd ? 'GANJIL' : 'GENAP')`
+```dart
+Text(_isOdd ? 'GANJIL' : 'GENAP')
+```
 
 5. Menambahkan logic untuk mendisplay button (+, -) dan tambah logic untuk hilangkan (-) saat counter == 0
-```
+```dart
 @override
   Widget build(BuildContext context) {
     ...,
