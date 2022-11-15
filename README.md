@@ -3,6 +3,60 @@
 ### PBP-B
 ### 2106640354
 
+<br/>
+
+# Tugas 8
+## Jelaskan perbedaan Navigator.push dan Navigator.pushReplacement.
+`Navigator.push()` menambahkan route ke dalam `Route` stack yang di atur oleh `Navigator`. `Navigator.pushReplacement()` berbeda dalam hal ia akan menghapus elemen yang digantikan dengan `Route` baru yang di push lewat method tersebut. `pushReplacement` akan menghapus `Route` sebelumnya sedangkan `push` tidak
+
+## Sebutkan widget apa saja yang kamu pakai di proyek kali ini dan jelaskan fungsinya.
+* `MaterialApp`: menggunakan template Material yang dimiliki oleh Flutter pada aplikasi
+* `Scaffold`: mengimplementasikan struktur layout visual dasar dari Material Design
+* `AppBar`: membuat app bar di bagian atas aplikasi
+* `Drawer`: menunjukkan navigation link pada suatu aplikasi
+* `Text`: membuat komponen teks
+* `Center`: menengahkan child dari widget tersebut
+* `Column`: men-display child dalam array vertikal
+* `Padding`: menentukan padding dari suatu child yang dimiliki
+* `Stack`: memosisikan children yang dimiliki relatif terhadap pojokan dari kotak
+* `Align`: memosisikan child dengan konfigurasi tertentu pada widget
+* `FloatingActionButton`: tombol lingkaran yang meng-hover diatas konten original
+* `Icon`: sebuah icon grafis yang terdefinisikan di Material
+* `Form`: sebuah container untuk menggabungkan form widgets
+* `SingleChildScrollView`: sebuah kotak yang memungkinkan suatu widget untuk bisa di scroll
+* `TextFormField`: sebuah FormField yang mengandung TextField
+* `InputDecoration`: meliputi border, label, styles untuk memberikan styling pada Material Design Text Field
+* `ListTile`: sebuah row dengan height yang tetap
+* `DropdownButton`: Material Design button untuk memilih sekumpulan pilihan
+* `DropdownMenuItem`: sebuah item di menu yang dibuah oleh DropdownButton
+* `ListView`: sekumpulan widget yang dapat di scroll dan tersusun secara linier
+* `Card`: sebuah panel dengan ujung yang rounded dan memiliki shadow
+* `Container`:  sebuah widget yang bertujuan untuk mengandung widget lain, digunakan untuk styling ataupun positioning
+
+## Sebutkan jenis-jenis event yang ada pada Flutter (contoh: onPressed).
+* onPressed
+* onHover
+* onTap
+* onChanged
+
+
+## Jelaskan bagaimana cara kerja Navigator dalam "mengganti" halaman dari aplikasi Flutter.
+`Navigator` memiliki sebuah stack of `Routes`, dimana stack ini mengandung elemen dari halaman yang diakses oleh user. Layaknya struktur data `Stack`, user dapat kembali ke halaman sebelumnya dengan melakukan operasi `pop()` atau menambahkan halaman dengan operasi `push()`. Elemen halaman yang paling atas akan ditampilkan kepada user.
+
+
+## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas.
+* Buat models Budget untuk merepresentasikan objek BudgetItem yang digunakan
+* Pada `main.dart` buatlah sebuah List yang mengandung objek Budget untuk menyimpan data budget dari user
+* Buat halaman bernama CreateBudget yang merupakan form untuk mengisi informasi budget
+* Buat halaman bernama ViewBudget untuk melihat hasil entry yang telah dimasukkan oleh pengguna
+* Melakukan _passing_ data berupa budgetData dari halaman ke objek Hamburger sebagai metode penyimpanan data dari user
+* Buat Hamburger untuk melakukan routing dari satu halaman ke halaman lainnya, pastikan juga untuk _passing_ argument berupa budgetData ke setiap halaman pada routing
+* Membuat widget bernama BudgetCard untuk merepresentasikan satu budget entry
+* Hubungkan BudgetCard dengan halaman ViewBudget menggunakan ListView
+
+<br/>
+
+# Tugas 7
 ## Definisi dan perbedaan _stateless_ dan _stateful_ widget pada Flutter
 Stateless widget: sebuah widget yang tidak pernah berubah. Sifat permanensi ini ada karena widget tidak menyimpan state (data tentang status quo) suatu aplikasi, 
 sehingga dari awal hingga terminasi program ia akan berbentuk sama. Stateless widget akan meng-inherit `StatelessWidget`.
