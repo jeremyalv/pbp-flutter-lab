@@ -21,8 +21,8 @@ class ViewBudget extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 16),
           reverse: false,
           itemCount: budgetData.length,
-          itemBuilder: (context, index) => BudgetCard(
-              budgetItemData: budgetData[budgetData.length - (index + 1)]),
+          itemBuilder: (context, index) =>
+              BudgetCard(budgets: budgetData[budgetData.length - (index + 1)]),
         )));
   }
 }

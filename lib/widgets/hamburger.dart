@@ -1,3 +1,4 @@
+import 'package:counter_7/pages/watchlist.dart';
 import 'package:flutter/material.dart';
 import '../models/budget_item.dart';
 
@@ -60,6 +61,17 @@ class Hamburger extends StatelessWidget {
               },
             ),
             Container(height: 1, color: Colors.grey[300]),
+            ListTile(
+              title: const Text("View Movies"),
+              onTap: () {
+                //  Route menu ke halaman form
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => Watchlist(budgetData: budgetData)),
+                );
+              },
+            ),
           ],
         ),
       ),

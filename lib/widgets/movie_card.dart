@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import '../models/budget_item.dart';
+import '../models/movie.dart';
 
-// Reference
+class MovieCard extends StatelessWidget {
+  final Movie movie;
 
-class BudgetCard extends StatelessWidget {
-  final Budget budgets;
-
-  const BudgetCard({
+  const MovieCard({
     super.key,
-    required this.budgets,
+    required this.movie,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+      padding: const EdgeInsets.fromLTRB(12, 12, 12, 0),
       // width: double.maxFinite,
       child: Card(
         elevation: 4.0,
@@ -25,7 +22,7 @@ class BudgetCard extends StatelessWidget {
               title: Padding(
                 padding: const EdgeInsets.only(top: 12),
                 child: Text(
-                  budgets.title,
+                  movie.title,
                   style: const TextStyle(fontWeight: FontWeight.w500),
                 ),
               ),
@@ -34,8 +31,10 @@ class BudgetCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(budgets.type),
-                    Text(DateFormat.yMMMEd().format(budgets.date)),
+                    Text("Released ${movie.releaseDate}"),
+                    movie.watched
+                        ? const Text("Watched")
+                        : const Text("Not watched"),
                   ],
                 ),
               ),
@@ -43,30 +42,25 @@ class BudgetCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  budgets.type == 'Expense'
+                  // TODO replace as checkbox
+                  movie.watched
                       ? Icon(
-                          Icons.remove,
-                          size: 30,
-                          color: Colors.red[700],
-                        )
-                      : Icon(
-                          Icons.add,
+                          Icons.check,
                           size: 30,
                           color: Colors.green[700],
+                        )
+                      : Icon(
+                          Icons.close,
+                          size: 30,
+                          color: Colors.red[700],
                         )
                 ],
               ),
             ),
             Container(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16),
               alignment: Alignment.centerLeft,
-              child: budgets.type == 'Expense'
-                  ? Text("You spent Rp${budgets.amount.toString()}",
-                      style: TextStyle(color: Colors.red[700]))
-                  : Text(
-                      "You received Rp${budgets.amount.toString()}",
-                      style: TextStyle(color: Colors.green[700]),
-                    ),
+              child: Text("\"${movie.review}\""),
             ),
           ],
         ),
