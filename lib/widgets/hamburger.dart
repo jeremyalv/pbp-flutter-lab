@@ -62,7 +62,7 @@ class Hamburger extends StatelessWidget {
             ),
             Container(height: 1, color: Colors.grey[300]),
             ListTile(
-              title: const Text("View Movies"),
+              title: const Text("My Watchlist"),
               onTap: () {
                 //  Route menu ke halaman form
                 Navigator.pushReplacement(
