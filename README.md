@@ -5,6 +5,60 @@
 
 <br/>
 
+# Tugas 9
+##  Apakah bisa kita melakukan pengambilan data JSON tanpa membuat model terlebih dahulu? Jika iya, apakah hal tersebut lebih baik daripada membuat model sebelum melakukan pengambilan data JSON?
+Secara teori, pengambilan data JSON dapat dilakukan secara langsung tanpa membuat models terlebih dahulu. Bahasa pemrograman Dart memiliki method map yang memiliki struktur key-value pair sama seperti JSON. Namun tentunya akan lebih baik bila kita menggunakan model dalam proses pengambilan data agar mengurangi resiko kesalahan yang dapat terjadi di proses.
+
+##  Sebutkan widget apa saja yang kamu pakai di proyek kali ini dan jelaskan fungsinya.
+* `MaterialApp`: menggunakan template Material yang dimiliki oleh Flutter pada aplikasi
+* `Scaffold`: mengimplementasikan struktur layout visual dasar dari Material Design
+* `AppBar`: membuat app bar di bagian atas aplikasi
+* `Drawer`: menunjukkan navigation link pada suatu aplikasi
+* `Text`: membuat komponen teks
+* `Center`: menengahkan child dari widget tersebut
+* `Column`: men-display child dalam array vertikal
+* `Padding`: menentukan padding dari suatu child yang dimiliki
+* `Stack`: memosisikan children yang dimiliki relatif terhadap pojokan dari kotak
+* `Align`: memosisikan child dengan konfigurasi tertentu pada widget
+* `FloatingActionButton`: tombol lingkaran yang meng-hover diatas konten original
+* `Icon`: sebuah icon grafis yang terdefinisikan di Material
+* `Form`: sebuah container untuk menggabungkan form widgets
+* `SingleChildScrollView`: sebuah kotak yang memungkinkan suatu widget untuk bisa di scroll
+* `TextFormField`: sebuah FormField yang mengandung TextField
+* `InputDecoration`: meliputi border, label, styles untuk memberikan styling pada Material Design Text Field
+* `ListTile`: sebuah row dengan height yang tetap
+* `DropdownButton`: Material Design button untuk memilih sekumpulan pilihan
+* `DropdownMenuItem`: sebuah item di menu yang dibuah oleh DropdownButton
+* `ListView`: sekumpulan widget yang dapat di scroll dan tersusun secara linier
+* `Card`: sebuah panel dengan ujung yang rounded dan memiliki shadow
+* `Container`:  sebuah widget yang bertujuan untuk mengandung widget lain, digunakan untuk styling ataupun positioning
+* `RoundedRectangleBorder`: bertujuan untuk membuat border kartu yang bersifat persegi panjang
+* `BorderRadius`: bertujuan untuk menentukan kelengkungan dari border suatu kotak
+* `Checkbox`: bertujuan untuk membentuk checkbox 
+* `Flexible`: bertujuan untuk memberikan sifat user interface yang fleksibel pada suatu widget
+* `SizedBox`: bertujuan untuk membuat elemen kotak yang memiliki ukuran tetap
+* `BoxDecoration`: bertujuan untuk membuat dekorasi pada suatu kotak yang telah dibuat
+* `ElevatedButton`: membuat sebuah button yang memiliki style dimensi dan sesuai dengan Material Design
+* `CircularProgressIndicator`: bertujuan untuk membuat sebuah progress indicator sebagai spinner
+
+##  Jelaskan mekanisme pengambilan data dari json hingga dapat ditampilkan pada Flutter.
+1. Membuat method HTTP asynchronous dengan tipe GET untuk mengambil data dari API endpoint yang menyediakan data JSON
+2. Lakukan decoding data tersebut menjadi format JSON dengan menggunakan method `json.decode` 
+3. Ubah data JSON tadi menjadi suatu object dengan menggunakan method `Movie.fromJson`
+4. Agar widget dengan data yang asynchronous dapat ditampilkan dengan baik, gunakan tipe data `Future` sebagai penyimpan variabel async
+5. Gunakan widget `FutureBuilder` untuk membuat sebuah komponen yang membutuhkan data asynchronous
+
+##  Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas.
+1. Membuat sebuah model baru bernama `movie.dart` pada `./models/` 
+2. Membuat method konversi antara JSON dan data yang ingin digunakan pada model `Movie`
+3. Membuat sebuah API bernama `watchlist_api.dart` pada `./api/` yang bertujuan untuk mengambil data dari endpoint API JSON yang telah dibuat sebelumnya
+4. Membuat page bernama `watchlist.dart` yang bertujuan untuk menunjukkan list dari film yang didapatkan dari API
+5. Menambahkan page `watchlist` pada Hamburger untuk navigasi
+6. Buatlah widget Card bernama `movie_card.dart` dan buat class `MovieCard` yang mewakilkan object `Movie` pada halaman `watchlist`
+7. Buatlah page bernama `movie_detail.dart` yang bertujuan untuk menunjukkan detail dari suatu film ketika `MovieCard` di klik oleh pengguna
+
+<br />
+
 # Tugas 8
 ## Jelaskan perbedaan Navigator.push dan Navigator.pushReplacement.
 `Navigator.push()` menambahkan route ke dalam `Route` stack yang di atur oleh `Navigator`. `Navigator.pushReplacement()` berbeda dalam hal ia akan menghapus elemen yang digantikan dengan `Route` baru yang di push lewat method tersebut. `pushReplacement` akan menghapus `Route` sebelumnya sedangkan `push` tidak
