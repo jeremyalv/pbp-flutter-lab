@@ -3,7 +3,6 @@ import '../models/movie.dart';
 import '../models/budget_item.dart';
 import 'package:counter_7/widgets/hamburger.dart';
 import '../api/watchlist_api.dart';
-import '../widgets/movie_card.dart';
 import '../pages/movie_detail.dart';
 
 /* TODO
@@ -22,16 +21,16 @@ class Watchlist extends StatefulWidget {
 }
 
 class _WatchlistState extends State<Watchlist> {
-  late Future<List<Movie>> _watchlist;
-  late WatchlistAPI _watchlistAPI;
+  late WatchlistAPI _watchlistAPI = WatchlistAPI();
+  late Future<List<Movie>> _watchlist = _watchlistAPI.fetchMovies();
 
-  @override
-  void initState() {
-    _watchlistAPI = WatchlistAPI();
-    _watchlist = _watchlistAPI.fetchMovies();
+  // @override
+  // void initState() {
+  //   _watchlistAPI = WatchlistAPI();
+  //   _watchlist = _watchlistAPI.fetchMovies();
 
-    super.initState();
-  }
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -68,13 +67,75 @@ class _WatchlistState extends State<Watchlist> {
                 itemBuilder: (context, index) => Container(
                   padding: const EdgeInsets.only(bottom: 8),
                   child: GestureDetector(
-                    onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => MovieDetail(
-                                budgetData: widget.budgetData,
-                                movie: snapshot.data[index]))),
-                    child: MovieCard(movie: snapshot.data[index]),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MovieDetail(
+                                  budgetData: widget.budgetData,
+                                  movie: snapshot.data[index])));
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(12, 12, 12, 0),
+                      // width: double.maxFinite,
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            side: BorderSide(
+                                color: snapshot.data[index].watched
+                                    ? Colors.green
+                                    : Colors.red,
+                                width: 1.5)),
+                        elevation: 4.0,
+                        child: Column(
+                          children: [
+                            ListTile(
+                              title: Padding(
+                                padding: const EdgeInsets.only(top: 12),
+                                child: Text(
+                                  snapshot.data[index].title,
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ),
+                              subtitle: Padding(
+                                padding: const EdgeInsets.only(top: 8),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                        "Released ${snapshot.data[index].releaseDate}"),
+                                    snapshot.data[index].watched
+                                        ? const Text("Watched")
+                                        : const Text("Not watched"),
+                                  ],
+                                ),
+                              ),
+                              trailing: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Checkbox(
+                                      value: snapshot.data[index].watched,
+                                      activeColor: Colors.green,
+                                      onChanged: (newValue) {
+                                        setState(() {
+                                          snapshot.data[index].watched =
+                                              !snapshot.data[index].watched;
+                                        });
+                                      }),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.all(16),
+                              alignment: Alignment.centerLeft,
+                              child: Text("\"${snapshot.data[index].review}\""),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               );

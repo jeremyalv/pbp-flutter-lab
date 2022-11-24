@@ -133,8 +133,10 @@ class _MovieDetailState extends State<MovieDetail> {
                       children: [
                         Row(
                           children: [
-                            Text("\"${widget.movie.review}\"",
-                                style: const TextStyle(fontSize: 16))
+                            Flexible(
+                              child: Text("\"${widget.movie.review}\"",
+                                  style: const TextStyle(fontSize: 16)),
+                            )
                           ],
                         ),
                       ],
